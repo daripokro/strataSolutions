@@ -5,7 +5,7 @@ GraphThread::GraphThread( int widthLimit, int heightLimit, QObject *parent )
     , _widthLimit( widthLimit )
     , _heightLimit( heightLimit )
 {
-
+    _state = ThreadState::Stop;
 }
 
 void GraphThread::threadPause()
@@ -25,7 +25,7 @@ void GraphThread::run()
         _mutex.lock();
         emit drawPoint( qrand() % ( _widthLimit + 1 ), qrand()% ( _heightLimit + 1 ) );
         this->sleep( 1 );
-       _mutex.unlock();
+        _mutex.unlock();
     }
 
 }

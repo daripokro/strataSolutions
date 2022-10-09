@@ -6,7 +6,7 @@
 
 MainWindow::MainWindow( QWidget *parent )
     : QMainWindow( parent )
-    , ui(new Ui::MainWindow)
+    , ui( new Ui::MainWindow )
 {
     ui->setupUi(this);
     _scene = new QGraphicsScene( this ) ;
@@ -41,7 +41,7 @@ void MainWindow::on_pushButtonStart_clicked()
 
 void MainWindow::on_pushButtonPause_clicked()
 {
-    if ( _graphikThread->isRunning() )
+    if ( _graphikThread->threadState() == GraphThread::Running )
     {
         _graphikThread->setThreadState( GraphThread::ThreadState::Pause );
         _graphikThread->threadPause();
@@ -51,12 +51,13 @@ void MainWindow::on_pushButtonPause_clicked()
 
 void MainWindow::on_pushButtonStop_clicked()
 {
-    if ( _graphikThread->threadState() == GraphThread::ThreadState::Pause )
+    if ( _graphikThread->threadState() != GraphThread::ThreadState::Stop )
     {
+        _graphikThread->setThreadState( GraphThread::ThreadState::Stop );
+        _scene->clear();
+        _graphikThread->wait();
         _graphikThread->quit();
     }
-    _graphikThread->setThreadState( GraphThread::ThreadState::Stop );
-    _scene->clear();
 }
 
 void MainWindow::_newThread()

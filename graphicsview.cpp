@@ -21,9 +21,9 @@ void GraphicsView::drawCoordinatePlane()
     this->scene()->addLine( QLineF( 0, 0, 0, this->height() ) );
 }
 
-void GraphicsView::drawPoint(qreal x, qreal y)
+void GraphicsView::drawPoint( qreal x, qreal y )
 {
-    scene()->addEllipse(x - 1, y - 1, 3.0, 3.0, QPen(), QBrush( Qt::SolidPattern ) );
+    scene()->addEllipse( x - 1, y - 1, 3.0, 3.0, QPen(), QBrush( Qt::SolidPattern ) );
 }
 
 
