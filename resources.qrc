@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>images/воспроизведение-24.png</file>
+        <file>images/пауза-24.png</file>
+        <file>images/стоп-24.png</file>
+    </qresource>
+</RCC>
